@@ -13,8 +13,8 @@
 
  define('DB_SERVER', 'localhost');
  define('DB_USERNAME', 'root');
- define('DB_PASSWORD', '');
- define('DB_NAME', 'unitydatabase');
+ define('DB_PASSWORD', 'root');
+ define('DB_NAME', 'unitysql');
 
 // Create connection
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -23,7 +23,7 @@ $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }else{
-    echo("Connection Established.<br>");
-    echo "Connected to MySQL successfully.<br>";
+    //echo("Connection Established.<br>");
+    //echo "Connected to MySQL successfully.<br>";
 }
 ?>

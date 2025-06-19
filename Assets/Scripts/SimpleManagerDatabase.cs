@@ -2,15 +2,21 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class SimpleManagerDatabase : MonoBehaviour
+public partial class SimpleManagerDatabase : MonoBehaviour
 {
-    private readonly string SERVER_URL = "localhost:80/unitydatabase/";
+    private readonly string SERVER_URL = "localhost:80/unitysql/";
     private readonly string CREATE_PHP = "TablesManagers/CreateTableUsers.php";
+    private readonly string UPDATE_PHP = "TablesManagers/UpdateTableUsers.php";
     private readonly string DROP_PHP = "TablesManagers/DropTableUser.php"; 
 
     public void OnClickCreateTable()
     {
         StartCoroutine(CreateTable());
+    }
+
+    public void OnClickUpdateTable()
+    {
+        StartCoroutine(UpdateTable());
     }
 
     public void OnClickDropTable()
@@ -32,7 +38,25 @@ public class SimpleManagerDatabase : MonoBehaviour
         }
         else
         {
-            Debug.Log("Form upload complete!");
+            Debug.Log("Create Table Completed!");
+        }
+    }
+
+    IEnumerator UpdateTable()
+    {
+        string UPDATE_USER_PHP = $"{SERVER_URL}/{UPDATE_PHP}";
+
+        UnityWebRequest request = new UnityWebRequest(UPDATE_USER_PHP);
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(request.error);
+        }
+        else
+        {
+            Debug.Log("Update Table Completed!");
         }
     }
 
@@ -50,7 +74,7 @@ public class SimpleManagerDatabase : MonoBehaviour
         }
         else
         {
-            Debug.Log("Form upload complete!");
+            Debug.Log("Drop Table Completed!");
         }
     }
 }

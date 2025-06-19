@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
-using static System.Net.WebRequestMethods;
 
 public class CredentialsManager : MonoBehaviour
 {
